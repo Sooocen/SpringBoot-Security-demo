@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,10 +32,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         SysUser user = userMapper.selectOne(queryWrapper);
         // 没有相关用户抛出异常
         if(Objects.isNull(user)){
-            throw new SpringSecurityDemoException(ResultCodeEnum.FAIL);
+            throw new SpringSecurityDemoException(ResultCodeEnum.PERMISSION);
         }
-        //TODO 获取用户权限
-        return new LoginUser(user);
+        // 获取用户权限
+        List<String> permissionList = new ArrayList<>(Arrays.asList("test","hello"));
+
+        return new LoginUser(user,permissionList);
     }
 }
 

@@ -2,6 +2,7 @@ package com.sooocen.service;
 
 import com.sooocen.pojo.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.sooocen.result.Result;
 
 /**
  * <p>
@@ -13,6 +14,14 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ISysUserService extends IService<SysUser> {
 
-    //通过ID获取用户
+    // 登陆
+    Result login(SysUser user);
+
+    // 退出登陆
+    Result logout();
+
+    // 通过ID获取用户
     SysUser getUserById(int id);
+
+
 }
